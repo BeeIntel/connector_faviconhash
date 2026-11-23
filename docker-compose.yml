@@ -1,0 +1,21 @@
+version: "3"
+services:
+  connector-favicon-hash:
+    image: connector-favicon-hash:6.4.11
+    environment:
+      - OPENCTI_URL=http://opencti:8080
+      - OPENCTI_TOKEN=ChangeMe
+      - CONNECTOR_ID=ChangeMe
+      - CONNECTOR_NAME=FaviconHash
+      - CONNECTOR_SCOPE=Domain-Name
+      - CONNECTOR_AUTO=false
+      - CONNECTOR_LOG_LEVEL=debug
+      - CONNECTOR_EXPOSE_METRICS=false
+      - FAVICON_HASH_API_URL=https://favicon-hash.kmsec.uk/api/
+      - FAVICON_HASH_MAX_TLP=TLP:GREEN
+      - FAVICON_HASH_REQUEST_TIMEOUT=10
+      - FAVICON_HASH_DELAY=0.5
+    restart: always
+    depends_on:
+      opencti:
+        condition: service_healthy
