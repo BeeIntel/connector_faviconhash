@@ -60,8 +60,6 @@ docker-compose up -d
 ```yaml
   connector-favicon-hash:
     image: connector-favicon-hash:6.4.11
-    volumes:
-      - /export/home/dorootless/certs/mwg-full.crt:/etc/ssl/certs/mwg-full.crt:ro
     environment:
       - OPENCTI_URL=http://opencti:8080
       - OPENCTI_TOKEN=968e8c0c-7a08-4b80-bd03-dc5395563198
