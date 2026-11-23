@@ -35,9 +35,7 @@ This connector automatically enriches **Domain-Name** observables using the [
 | `FAVICON_HASH_MAX_TLP`         | Maximum TLP level allowed for enrichment     | `TLP:AMBER`                            |
 | `FAVICON_HASH_REQUEST_TIMEOUT` | HTTP request timeout (seconds)               | `10`                                   |
 | `FAVICON_HASH_DELAY`           | Delay between API calls (seconds)            | `0.5`                                  |
-| `FAVICON_HASH_CA_BUNDLE`       | Path to a custom CA certificate (optional)   | `/etc/ssl/certs/mwg-full.crt`          |
-| `HTTP_PROXY` / `HTTPS_PROXY`   | Proxy URLs (optional)                        | `http://proxy:3128`                    |
-| `NO_PROXY`                     | Comma‑separated hosts to bypass proxy        | `opencti,rabbitmq`                     |
+
 
 > **Note:** The connector always runs once immediately after startup and then waits for internal enrichment requests from OpenCTI.
 
@@ -62,8 +60,8 @@ docker-compose up -d
     image: connector-favicon-hash:6.4.11
     environment:
       - OPENCTI_URL=http://opencti:8080
-      - OPENCTI_TOKEN=968e8c0c-7a08-4b80-bd03-dc5395563198
-      - CONNECTOR_ID=125c72fa-e256-457c-9d27-e7f881c9bd9f
+      - OPENCTI_TOKEN=ChangeMe
+      - CONNECTOR_ID=ChangeMe
       - CONNECTOR_NAME=FaviconHash
       - CONNECTOR_SCOPE=Domain-Name
       - CONNECTOR_AUTO=true
@@ -73,10 +71,6 @@ docker-compose up -d
       - FAVICON_HASH_MAX_TLP=TLP:GREEN
       - FAVICON_HASH_REQUEST_TIMEOUT=10
       - FAVICON_HASH_DELAY=0.5
-      - HTTP_PROXY=${HTTP_PROXY}
-      - HTTPS_PROXY=${HTTP_PROXY}
-      - NO_PROXY=localhost,127.0.0.1,opencti
-      - FAVICON_HASH_CA_BUNDLE=/etc/ssl/certs/mwg-full.crt
     restart: always
     depends_on:
       opencti:
@@ -102,11 +96,6 @@ docker run -d \
   -e FAVICON_HASH_MAX_TLP=TLP:AMBER \
   -e FAVICON_HASH_REQUEST_TIMEOUT=10 \
   -e FAVICON_HASH_DELAY=0.5 \
-  -e HTTP_PROXY=http://proxy.example.com:8080 \
-  -e HTTPS_PROXY=http://proxy.example.com:8080 \
-  -e NO_PROXY=localhost,127.0.0.1,opencti \
-  -e FAVICON_HASH_CA_BUNDLE=/etc/ssl/certs/mwg-full.crt \
-  -v /export/home/dorootless/certs/mwg-full.crt:/etc/ssl/certs/mwg-full.crt:ro \
   opencti/connector-favicon-hash:6.4.11
 ```
 
