@@ -57,7 +57,7 @@ docker-compose up -d
 
 ```yaml
   connector-favicon-hash:
-    image: connector-favicon-hash:6.4.11
+    image: beeintelligence/favicon-hash-6.4.11:latest
     environment:
       - OPENCTI_URL=http://opencti:8080
       - OPENCTI_TOKEN=ChangeMe
